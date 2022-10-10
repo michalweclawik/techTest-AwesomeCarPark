@@ -1,5 +1,5 @@
 public class CarPark {
-    private int numberOfTotalParkingSpaces=400;
+
 
     private int numberOfCompactParkingSpaces=250;
     private int numberOfRegularParkingSpaces=100;
@@ -7,18 +7,34 @@ public class CarPark {
 
 
 //    Van spots
+private int vanRegularParkingSpacesTaken = 0;
 
     private int vanLargerParkingSpacesTaken = 0;
-    private int vanRegularParkingSpacesTaken = 0;
+
+    public int getVanLargerParkingSpacesTaken() {
+        return vanLargerParkingSpacesTaken;
+    }
+
+    public void setVanLargerParkingSpacesTaken(int vanLargerParkingSpacesTaken) {
+        this.vanLargerParkingSpacesTaken = vanLargerParkingSpacesTaken;
+    }
+
+    public int getVanRegularParkingSpacesTaken() {
+        return vanRegularParkingSpacesTaken;
+    }
+
+    public void setVanRegularParkingSpacesTaken(int vanRegularParkingSpacesTaken) {
+        this.vanRegularParkingSpacesTaken = vanRegularParkingSpacesTaken;
+    }
+
+
 
 
     public int getNumberOfTotalParkingSpaces() {
-        return numberOfTotalParkingSpaces;
+        return numberOfRegularParkingSpaces+numberOfLargeParkingSpaces+numberOfCompactParkingSpaces;
     }
 
-    public void setNumberOfTotalParkingSpaces(int numberOfTotalParkingSpaces) {
-        this.numberOfTotalParkingSpaces = numberOfTotalParkingSpaces;
-    }
+
 
     public int getNumberOfCompactParkingSpaces() {
         return numberOfCompactParkingSpaces;
@@ -44,8 +60,9 @@ public class CarPark {
         this.numberOfLargeParkingSpaces = numberOfLargeParkingSpaces;
     }
 
-// option 4
-    public void getNumberOfAvaliableSpaces(){
+
+//- Tell us how many total spots are in the parking lot
+    public void getNumberOfAvaliableSpacesByType(){
         System.out.println("Avaliable spaces:");
         System.out.println("");
         System.out.println("                 Motocycle: " + getNumberOfCompactParkingSpaces()+ " spaces.");
@@ -54,6 +71,11 @@ public class CarPark {
 
     }
 
+//    - Tell us how many spots are remaining
+public void getNumberOfRemainingAvaliableSpaces(){
+    System.out.println("Avaliable spaces: " + getNumberOfTotalParkingSpaces());
+
+}
 //- Tell us when the parking lot is full
     public void isFull(){
         if( numberOfCompactParkingSpaces ==0  && numberOfRegularParkingSpaces==0 && numberOfLargeParkingSpaces==0){
@@ -86,5 +108,63 @@ public void whatTypeOfSpotsAreFull(){
         System.out.println( "Vans taking :");
         System.out.println( "              " +vanRegularParkingSpacesTaken + " regular spots. ");
         System.out.println( "              " +vanLargerParkingSpacesTaken + " large spots. ");
+    }
+
+//    Park motocycle
+
+    public int canParkVehicle( Motorcycle motorcycle){
+        if(numberOfCompactParkingSpaces - motorcycle.getCompactParkingSize() >=0){
+            System.out.println("MOtocycle parked in compact spot");
+            return numberOfCompactParkingSpaces=numberOfCompactParkingSpaces- motorcycle.getCompactParkingSize();
+
+        }
+        else if(numberOfRegularParkingSpaces - motorcycle.getCompactParkingSize() >=0){
+            System.out.println("MOtocycle parked in regular  spot");
+            return numberOfRegularParkingSpaces=numberOfRegularParkingSpaces- motorcycle.getCompactParkingSize();
+        }
+        else if(numberOfLargeParkingSpaces - motorcycle.getCompactParkingSize() >=0){
+            System.out.println("MMotorcycle parked in large  spot");
+            return numberOfLargeParkingSpaces=numberOfLargeParkingSpaces- motorcycle.getCompactParkingSize();
+        }
+        else{
+            System.out.println("No parking available");
+        }
+        return 0;
+    }
+    public int canParkVehicle( Car car){
+
+        if(numberOfRegularParkingSpaces - car.getRegularParkingSize() >=0){
+            System.out.println("Car parked in regular  spot");
+            return numberOfRegularParkingSpaces=numberOfRegularParkingSpaces- car.getRegularParkingSize();
+        }
+
+        else if(numberOfCompactParkingSpaces - car.getCompactParkingSize() >=0){
+            System.out.println("Car  parked in compact spot");
+            return numberOfCompactParkingSpaces=numberOfCompactParkingSpaces- car.getCompactParkingSize();
+
+        }
+            else{
+            System.out.println("No parking available");
+        }
+        return 0;
+    }
+    public int canParkVehicle( Van van){
+
+        if(numberOfLargeParkingSpaces - van.getLargeParkingSize() >=0){
+            System.out.println("Van parked in large  spot");
+            vanLargerParkingSpacesTaken++;
+            return numberOfLargeParkingSpaces=numberOfLargeParkingSpaces- van.getLargeParkingSize();
+        }
+
+        else if(numberOfRegularParkingSpaces - van.getRegularParkingSize() >=3){
+            System.out.println("Van  parked in regular spot");
+            vanRegularParkingSpacesTaken++;
+            return numberOfCompactParkingSpaces=numberOfCompactParkingSpaces- van.getRegularParkingSize();
+
+        }
+        else{
+            System.out.println("No parking available");
+        }
+        return 0;
     }
 }

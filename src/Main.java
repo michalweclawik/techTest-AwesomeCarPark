@@ -15,28 +15,45 @@ public class Main {
 
         while(true){
             System.out.println("What vehicle you want to park? Chose option  ");
-            System.out.println("1. Motocycle");
-            System.out.println("2 . Car");
+            System.out.println("1. Motorcycle");
+            System.out.println("2. Car");
             System.out.println("3. Van ");
-            System.out.println("4. Check avaliable spaces");
+            System.out.println();
+            System.out.println("or ");
+            System.out.println("4. Check available spaces");
+            System.out.println("5. Check available spaces by type");
+            System.out.println("6. Check how many spots vans are taking up ");
+            System.out.println();
 
             int userChoice=userInput.nextInt();
-
+            System.out.println();
         switch(userChoice){
             case 1 :
-                System.out.println("you choosed 1 ");
+                System.out.println("you chosen 1 ");
+                carPark.canParkVehicle(motorcycle);
                 break;
             case 2 :
-                System.out.println("you choosed 2 ");
+                System.out.println("you chosen 2 ");
+                carPark.canParkVehicle(car);
                 break;
             case 3 :
-                System.out.println("you choosed 3 ");
+                System.out.println("you chosen 3 ");
+                carPark.canParkVehicle(van);
                 break;
             case 4 :
-                carPark.getNumberOfAvaliableSpaces();
+                carPark.getNumberOfRemainingAvaliableSpaces();
+                break;
+            case 5 :
+                carPark.getNumberOfAvaliableSpacesByType();
+                break;
+            case 6 :
+                carPark.howManySpotsVansTakes();
                 break;
 
+            default:
+                System.out.println("Wrong input try again ");
         }
+            System.out.println();
 
     }}
 }
