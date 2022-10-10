@@ -15,6 +15,7 @@ public class Main {
 
         boolean runApp =true;
         while(runApp){
+            System.out.println();
             System.out.println("What vehicle you want to park? Chose option  ");
             System.out.println("1. Motorcycle");
             System.out.println("2. Car");
