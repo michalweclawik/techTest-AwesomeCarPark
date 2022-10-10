@@ -1,6 +1,5 @@
 public class CarPark {
-
-
+    private int totalNumberParkingSpaces=400;
     private int numberOfCompactParkingSpaces=250;
     private int numberOfRegularParkingSpaces=100;
     private int numberOfLargeParkingSpaces=50;

@@ -1,3 +1,4 @@
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Main {
@@ -12,8 +13,8 @@ public class Main {
 
         Scanner userInput = new Scanner(System.in);
 
-
-        while(true){
+        boolean runApp =true;
+        while(runApp){
             System.out.println("What vehicle you want to park? Chose option  ");
             System.out.println("1. Motorcycle");
             System.out.println("2. Car");
@@ -23,6 +24,8 @@ public class Main {
             System.out.println("4. Check available spaces");
             System.out.println("5. Check available spaces by type");
             System.out.println("6. Check how many spots vans are taking up ");
+            System.out.println("7. Exit");
+
             System.out.println();
 
             int userChoice=userInput.nextInt();
@@ -48,6 +51,10 @@ public class Main {
                 break;
             case 6 :
                 carPark.howManySpotsVansTakes();
+                break;
+            case 7 :
+                System.out.println("Exit");
+                runApp=false;
                 break;
 
             default:
